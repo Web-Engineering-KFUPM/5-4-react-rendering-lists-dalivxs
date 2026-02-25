@@ -2,11 +2,13 @@ import TaskItem from "./TaskItem";
 
 export default function CourseCard({ course, index, onMutateCourse }) {
   function toggleTask(id) {
-    // Task 4
+    onMutateCourse(index, (tasks) =>
+      tasks.map((t) => (t.id === id ? { ...t, isDone: !t.isDone } : t))
+    );
   }
 
   function deleteTask(id) {
-    // Task 4
+    onMutateCourse(index, (tasks) => tasks.filter((t) => t.id !== id));
   }
 
   const hasTasks = course.tasks.length > 0;
